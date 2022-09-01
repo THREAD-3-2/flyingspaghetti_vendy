@@ -1,0 +1,6 @@
+# requirements for package development and CI
+
+## documentation generator
+sphinx
+### document MATLAB code (optionally)
+sphinxcontrib-matlabdomain
