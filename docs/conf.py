@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = '1D_wave_equation'
-copyright = '2020, Martina Stavole'
-author = 'Martina Stavole'
+project = 'flyingspaghetti_vendy'
+copyright = '2020, Sudhanva Kusuma Chandrashekhara'
+author = 'Sudhanva Kusuma CHandrashekhara'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
