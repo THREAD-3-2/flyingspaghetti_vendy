@@ -19,7 +19,7 @@
 
 project = 'flyingspaghetti_vendy'
 copyright = '2020, Sudhanva Kusuma Chandrashekhara'
-author = 'Sudhanva Kusuma CHandrashekhara'
+author = 'Sudhanva Kusuma Chandrashekhara'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
