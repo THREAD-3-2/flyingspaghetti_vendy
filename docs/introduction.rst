@@ -14,7 +14,7 @@ at the lower end to point force :math:`f_{x}` and point moments
 :math:`h_{y}` and :math:`h_{z}` with constant direction and
 piecewise linear magnitude in time as shown in the figure.
 
-.. figure:: /figures/flying_spaghetti.png
+.. figure:: /_images/flying_spaghetti.png
 
 ::
 
