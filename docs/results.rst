@@ -14,14 +14,14 @@ Results are shown in terms of:
 
 For the particular example problem, the results are given in the figures below
 
-.. figure:: /images/Total_mechanical_energy_vs_time.png
+.. figure:: /figures/Total_mechanical_energy_vs_time.png
 
    Figure 1. Total mechanical energy vs time
 
-.. figure:: /images/Displacement_vs_time.png
+.. figure:: /figures/Displacement_vs_time.png
 
    Figure 2. Displacement vs. time
    
-.. figure:: /images/Deformed_shapes.png
+.. figure:: /figures/Deformed_shapes.png
 
    Figure 3. Deformed shapes

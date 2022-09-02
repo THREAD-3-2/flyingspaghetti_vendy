@@ -1,6 +1,4 @@
-.. \_matlab:
-
-============= MATLAB code =============
+.. _matlab:
 
 ===========
 MATLAB Code

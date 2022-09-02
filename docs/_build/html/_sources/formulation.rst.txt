@@ -1,6 +1,5 @@
-.. \_formulation:
+.. _formulation:
 
-============== Formulation ==============
 
 ===============================
 Velocity based beam formulation

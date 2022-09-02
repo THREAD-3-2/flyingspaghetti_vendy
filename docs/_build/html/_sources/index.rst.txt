@@ -12,10 +12,3 @@ Welcome to flying_spaghetti_vendy's documentation!
    results
    matlab
    :maxdepth: 2
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
