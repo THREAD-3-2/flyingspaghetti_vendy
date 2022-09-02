@@ -1,0 +1,35 @@
+name: CI
+
+# when to run the CI jobs
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # enable manual dispatch
+  workflow_dispatch:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout the current state of the repository
+    - name: Checkout
+      uses: actions/checkout@v3
+    # Setup Python and dependencies defined in requirements.txt
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+        cache: 'pip'
+    - run: pip install -r requirements.txt
+    # Run Sphinx
+    - name: Build documentation (and run doctests)
+      run: |
+        cd docs/
+        make html
+    # Upload html to gh-pages branch (where I manually committed a .nojekyll file)
+    - name: Deploy documentation on GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: "docs/_build/html"
