@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html lang="English">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Velocity based beam formulation &#8212; Flying Spaghetti Vendy 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Post-processing and results" href="results.html" />
+    <link rel="prev" title="Description of the problem" href="introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p>============== Formulation ==============</p>
+<section id="velocity-based-beam-formulation">
+<h1>Velocity based beam formulation<a class="headerlink" href="#velocity-based-beam-formulation" title="Permalink to this headline">¶</a></h1>
+<p>The source code flyingspaghetti_vendy,
+<a class="reference external" href="https://github.com/THREAD-3-2/flyingspaghetti_vendy.git">https://github.com/THREAD-3-2/flyingspaghetti_vendy.git</a> is based on novel energy preserving velocity based formulation for the geometrically exact beams (Zupan,
+Zupan, 2018) <a class="reference external" href="https://doi.org/10.1007/s11071-018-4634-y">https://doi.org/10.1007/s11071-018-4634-y</a>. For the
+sake of brevity, the final discretized governing equations are presented
+here while for more detailed understanding, the user is suggested to go
+through the paper. The time discretization employed here is based on
+midpoint rule while the spatial descritization is based on Galerkin
+finite element method.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+                 \int_{0}^{L} \left[\frac{\rho A}{h}\left(\boldsymbol{v}^{\left[n+1\right]} - \boldsymbol{v}^{\left[n\right]}\right) P_{i} + \boldsymbol{n}^{\left[n+1/2\right]}P_{i}^{\prime} - \boldsymbol{\tilde{n}}^{\left[n+1/2\right]}P_{i}\right] \,\mathrm{dx} - \delta_{p}\boldsymbol{f}_{e}^{\left[n+1/2\right]} = \boldsymbol{0}
+\end{aligned}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+             &amp;\int_{0}^{L} \bigg[\frac{\boldsymbol{J}_{\rho} }{h}\left(\boldsymbol{\mathit{\Omega}}^{\left[n+1\right]} - \boldsymbol{\mathit{\Omega}}^{\left[    n\right]}\right) P_{i} + \boldsymbol{\overline{\mathit{\Omega}}}\times \boldsymbol{J}_{\rho}\boldsymbol{\overline{\mathit{\Omega}}}P_{i} - \boldsymbol{K}^{\left[n+1/2\right]} \times\boldsymbol{M}^{\left[n+1/2\right]}P_{i} +\boldsymbol{M}^{\left[n+1/2\right]}P_{i}^{\prime}\\&amp; -  \left(\boldsymbol{\mathit{\Gamma}}^{\left[n+1/2\right]} - \boldsymbol{\mathit{\Gamma}}_{\mathit{0}}\right) \times \boldsymbol{N}^{\left[n+1/2\right]} P_{i}  -\left(\boldsymbol{\hat{q}}^{\ast\left[n+1/2\right]} \circ \boldsymbol{\tilde{m}}^{\left[n+1/2\right]} \circ \boldsymbol{\hat{q}}^{\left[n+1/2\right]}\right)P_{i}\bigg] \,\mathrm{dx} -\delta_{p}\boldsymbol{M}_{e}^{\left[n+1/2\right]} = \boldsymbol{0}
+\end{aligned}\end{split}\]</div>
+<p>The interpolated variables are velocities and angular velocities at
+midtime
+<span class="math notranslate nohighlight">\((\boldsymbol{\overline{v}},\boldsymbol{\overline{\Omega}})\)</span>.
+The interpolation points <span class="math notranslate nohighlight">\(x_i; i= 1,2,3,\dots,p\)</span> are chosen
+equidistantly from the interval <span class="math notranslate nohighlight">\([0,L]\)</span> with <span class="math notranslate nohighlight">\(x_0=0\)</span> and
+<span class="math notranslate nohighlight">\(x_p = L\)</span>. The crucial idea here is that the angular velocities
+are locally additive quantities and hence the angular momentum balance
+equation is expressed here in local basis and thus standard additive
+type interpolation functions can be used and avoids the multiplicative
+update or special transformations for rotational increments.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+     \boldsymbol{\overline{v}}(x,t) &amp;= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{v}}^{i}(t)\\
+     \boldsymbol{\overline{\mathit{\Omega}}}(x,t) &amp;= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{\mathit{\Omega}}}^{i}(t)
+\end{aligned}\end{split}\]</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Flying Spaghetti Vendy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Description of the problem</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Velocity based beam formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Post-processing and results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB Code</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="introduction.html" title="previous chapter">Description of the problem</a></li>
+      <li>Next: <a href="results.html" title="next chapter">Post-processing and results</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Sudhanva Kusuma Chandrashekhara.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/formulation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
