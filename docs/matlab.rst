@@ -23,6 +23,6 @@ The input data is give in:
 
 :mod:`flyingspaghetti_vendy.Flying_spaghetti`
 
-the rest of the auxilary files are required for the evaluation of the
+The rest of the auxiliary files are required for the evaluation of the
 problem while the all other parameters can be modified within the input
 file “Flying_spaghetti”.

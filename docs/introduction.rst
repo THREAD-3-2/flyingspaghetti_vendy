@@ -7,13 +7,12 @@ Description of the problem
 This is a classical example introduced by Simo and Vu-Quoc and it
 involves extremely large displacements and rotations and served later
 also for the demonstration of numerical stability of energy preserving
-algorithms. The beam lies initially inclied in XZ-plane and is subjected
+algorithms. The beam lies initially inclined in XZ-plane and is subjected
 at the lower end to point force :math:`f_{x}` and point moments
 :math:`h_{y}` and :math:`h_{z}` with constant direction and
 piecewise linear magnitude in time as shown in the figure.
 
 .. figure:: /figures/flying_spaghetti.png
-
 
    Figure 1. Free flight of a flexible beam
 
