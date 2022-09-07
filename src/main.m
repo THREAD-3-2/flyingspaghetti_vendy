@@ -15,7 +15,7 @@ close all;
 fprintf('\n Velocity based elements \n');
 
 %% input data
-
+addpath('flying_spaghetti_vendy');
 Flying_spaghetti                    % Input data for the free flight of a flexible beam
 
 %% Preprocessing
