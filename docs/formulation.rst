@@ -31,7 +31,13 @@ In the present formulation, rotational quaternions are employed for the descript
        :name: eq:3
 
        \begin{aligned}
-            \boldsymbol{\overline{v}}(x,t) &= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{v}}^{i}(t)\\
+            \boldsymbol{\overline{v}}(x,t) &= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{v}}^{i}(t)
+       \end{aligned}
+
+.. math::
+       :name: eq:4
+
+       \begin{aligned}
             \boldsymbol{\overline{\mathit{\Omega}}}(x,t) &= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{\mathit{\Omega}}}^{i}(t)
        \end{aligned}
 
