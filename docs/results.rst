@@ -6,13 +6,13 @@
 
 Results are shown in terms of:
 
-* Total mechanical energy vs. time:
+* Total mechanical energy vs. time
 
 * Deformed shapes
 
 * Displacement vs. time
 
-For the particular example problem, the results are given in the figures below
+For the particular example problem, the results are given in the figures below.
 
 .. figure:: /figures/Total_mechanical_energy_vs_time.png
 
