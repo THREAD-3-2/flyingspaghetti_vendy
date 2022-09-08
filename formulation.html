@@ -37,37 +37,25 @@
             
   <section id="velocity-based-beam-formulation">
 <span id="formulation"></span><h1>Velocity based beam formulation<a class="headerlink" href="#velocity-based-beam-formulation" title="Permalink to this heading">¶</a></h1>
-<p>The source code flyingspaghetti_vendy,
-<a class="reference external" href="https://github.com/THREAD-3-2/flyingspaghetti_vendy.git">https://github.com/THREAD-3-2/flyingspaghetti_vendy.git</a> is based on novel energy preserving velocity based formulation for the geometrically exact beams (Zupan,
-Zupan, 2018) <a class="reference external" href="https://doi.org/10.1007/s11071-018-4634-y">https://doi.org/10.1007/s11071-018-4634-y</a>. For the
-sake of brevity, the final discretized governing equations are presented
-here while for more detailed understanding, the user is suggested to go
-through the paper. The time discretization employed here is based on
-midpoint rule while the spatial descritization is based on Galerkin
-finite element method.</p>
-<div class="math notranslate nohighlight">
-\[\begin{aligned}
+<p>The source code <a class="reference external" href="https://github.com/THREAD-3-2/flyingspaghetti_vendy">flyingspaghetti_vendy</a>  is based on novel energy preserving velocity based formulation for the geometrically exact beams  proposed by <a class="reference external" href="https://doi.org/10.1007/s11071-018-4634-y">Zupan and Zupan, (2019)</a>.
+For the sake of brevity, the final discretized governing equations are presented here. The time discretization employed here is based on
+midpoint rule while the spatial discretization is based on Galerkin finite element method. The final discretized momentum balance equations are:</p>
+<div class="math notranslate nohighlight" id="eq-1">
+<span id="equation-eq-1"></span><span class="eqno">(1)<a class="headerlink" href="#eq-1" title="Permalink to this equation">¶</a></span>\[\begin{aligned}
                  \int_{0}^{L} \left[\frac{\rho A}{h}\left(\boldsymbol{v}^{\left[n+1\right]} - \boldsymbol{v}^{\left[n\right]}\right) P_{i} + \boldsymbol{n}^{\left[n+1/2\right]}P_{i}^{\prime} - \boldsymbol{\tilde{n}}^{\left[n+1/2\right]}P_{i}\right] \,\mathrm{dx} - \delta_{p}\boldsymbol{f}_{e}^{\left[n+1/2\right]} = \boldsymbol{0}
 \end{aligned}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{aligned}
+<div class="math notranslate nohighlight" id="eq-2">
+<span id="equation-eq-2"></span><span class="eqno">(2)<a class="headerlink" href="#eq-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}
              &amp;\int_{0}^{L} \bigg[\frac{\boldsymbol{J}_{\rho} }{h}\left(\boldsymbol{\mathit{\Omega}}^{\left[n+1\right]} - \boldsymbol{\mathit{\Omega}}^{\left[    n\right]}\right) P_{i} + \boldsymbol{\overline{\mathit{\Omega}}}\times \boldsymbol{J}_{\rho}\boldsymbol{\overline{\mathit{\Omega}}}P_{i} - \boldsymbol{K}^{\left[n+1/2\right]} \times\boldsymbol{M}^{\left[n+1/2\right]}P_{i} +\boldsymbol{M}^{\left[n+1/2\right]}P_{i}^{\prime}\\&amp; -  \left(\boldsymbol{\mathit{\Gamma}}^{\left[n+1/2\right]} - \boldsymbol{\mathit{\Gamma}}_{\mathit{0}}\right) \times \boldsymbol{N}^{\left[n+1/2\right]} P_{i}  -\left(\boldsymbol{\hat{q}}^{\ast\left[n+1/2\right]} \circ \boldsymbol{\tilde{m}}^{\left[n+1/2\right]} \circ \boldsymbol{\hat{q}}^{\left[n+1/2\right]}\right)P_{i}\bigg] \,\mathrm{dx} -\delta_{p}\boldsymbol{M}_{e}^{\left[n+1/2\right]} = \boldsymbol{0}
 \end{aligned}\end{split}\]</div>
-<p>The interpolated variables are velocities and angular velocities at
-midtime
-<span class="math notranslate nohighlight">\((\boldsymbol{\overline{v}},\boldsymbol{\overline{\Omega}})\)</span>.
-The interpolation points <span class="math notranslate nohighlight">\(x_i; i= 1,2,3,\dots,p\)</span> are chosen
-equidistantly from the interval <span class="math notranslate nohighlight">\([0,L]\)</span> with <span class="math notranslate nohighlight">\(x_0=0\)</span> and
-<span class="math notranslate nohighlight">\(x_p = L\)</span>. The crucial idea here is that the angular velocities
-are locally additive quantities and hence the angular momentum balance
-equation is expressed here in local basis and thus standard additive
-type interpolation functions can be used and avoids the multiplicative
-update or special transformations for rotational increments.</p>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{v},\boldsymbol{\Omega}\)</span> are the velocities and angular velocities in fixed and local basis respectively, <span class="math notranslate nohighlight">\(\rho\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{J}_{\rho}\)</span> are material density and mass moment of inertia, <span class="math notranslate nohighlight">\(\boldsymbol{N}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{M}\)</span> are respectively the stress resultant forces and moments, <span class="math notranslate nohighlight">\(\boldsymbol{\Gamma}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{K}\)</span> are the vector of strain and curvature and <span class="math notranslate nohighlight">\(\boldsymbol{\tilde{n}}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\tilde{m}}\)</span> are the vector of distributed force and distributed moments. In the above equations, the quantities in the fixed basis are denoted in lower case while the ones in local basis are denoted with upper case notations.</p>
+<p>In the present formulation, rotational quaternions are employed for the description of three-dimensional rotations. However, in contrast to many existing approaches, the interpolated variables here are the velocities and angular velocities at midtime, <span class="math notranslate nohighlight">\((\boldsymbol{\overline{v}},\boldsymbol{\overline{\Omega}})\)</span>. The interpolation points <span class="math notranslate nohighlight">\(x_i (i= 1,2,3,\dots,p)\)</span> are chosen equidistantly from the interval <span class="math notranslate nohighlight">\([0,L]\)</span> with <span class="math notranslate nohighlight">\(x_0=0\)</span> and <span class="math notranslate nohighlight">\(x_p = L\)</span>. The crucial idea here is that the angular velocities are locally additive quantities and hence the angular momentum balance equation is expressed here in local basis. Thus standard additive type interpolation functions can be used while avoiding the multiplicative update or special transformations for the rotational increments.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
      \boldsymbol{\overline{v}}(x,t) &amp;= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{v}}^{i}(t)\\
      \boldsymbol{\overline{\mathit{\Omega}}}(x,t) &amp;= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{\mathit{\Omega}}}^{i}(t)
 \end{aligned}\end{split}\]</div>
+<p>The computational benefits of the approach here are: (i) the additivity of the primary unknowns enables the use of standard interpolation techniques in space and simplifies the iteration procedure; (ii) the energy of the conservative systems is preserved without the need to introduce any special approxmiation for the roation or strain field. For more detailed understanding, the user is suggested to go through the paper and (iii) the kinematic compatibility equations are satisfied with the same level of accuracy as the governing equations.</p>
 </section>
 
 
@@ -87,6 +75,7 @@ update or special transformations for rotational increments.</p>
 
 
 <h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Description of the problem</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Velocity based beam formulation</a></li>
