@@ -28,6 +28,8 @@ where :math:`\boldsymbol{v},\boldsymbol{\Omega}` are the velocities and angular 
 In the present formulation, rotational quaternions are employed for the description of three-dimensional rotations. However, in contrast to many existing approaches, the interpolated variables here are the velocities and angular velocities at midtime, :math:`(\boldsymbol{\overline{v}},\boldsymbol{\overline{\Omega}})`. The interpolation points :math:`x_i (i= 1,2,3,\dots,p)` are chosen equidistantly from the interval :math:`[0,L]` with :math:`x_0=0` and :math:`x_p = L`. The crucial idea here is that the angular velocities are locally additive quantities and hence the angular momentum balance equation is expressed here in local basis. Thus standard additive type interpolation functions can be used while avoiding the multiplicative update or special transformations for the rotational increments.
 
 .. math::
+       :name: eq:3
+
        \begin{aligned}
             \boldsymbol{\overline{v}}(x,t) &= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{v}}^{i}(t)\\
             \boldsymbol{\overline{\mathit{\Omega}}}(x,t) &= \sum_{i=1}^{p} P_{i}(x)\boldsymbol{\overline{\mathit{\Omega}}}^{i}(t)
