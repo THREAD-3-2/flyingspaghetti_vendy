@@ -1,7 +1,10 @@
 .. _formulation:
 
-
 ===============================
+Integration method
+===============================
+
+
 Velocity based beam formulation
 ===============================
 
