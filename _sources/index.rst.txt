@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 =================================================
-Flying Spaghetti Vendy Documentation
+Documentation of 'flyingspaghetti_vendy'
 =================================================
 
 `flyingspaghetti_vendy <https://github.com/THREAD-3-2/flyingspaghetti_vendy>`_
